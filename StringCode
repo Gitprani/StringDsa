@@ -1,0 +1,31 @@
+	public static int StringCode(String code){
+	    code=code.toUpperCase();
+	    
+	    String[] arr=code.split(" ");
+	    StringBuilder sb=new StringBuilder();
+	    
+	    
+	    for(int word=0;word<arr.length;word++){
+	        int sum=0;
+	        int n=arr[word].length();
+	        
+	        for(int i=0;i<n/2;i++){
+	            char start=arr[word].charAt(i);
+	            char end=arr[word].charAt(n-1-i);
+	            
+	            int valStart=start - 'A' + 1;
+	            int valEnd=end - 'A' + 1;
+	            
+	            sum+=Math.abs(valStart - valEnd);
+	        }
+	        if(n%2==1){
+	            int valMid=arr[word].charAt(n/2) - 'A' + 1;
+	            sum+=valMid;
+	        }
+	        sb.append(sum);
+	    }
+	    return Integer.parseInt(sb.toString());
+	    
+	    
+	}
+}
