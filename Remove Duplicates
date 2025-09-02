@@ -1,0 +1,24 @@
+public class Main
+{
+	public static void main(String[] args) {
+	    
+	    String st="Hello pranesh krishnan";
+	    st=st.toLowerCase().replaceAll("[^a-z]", "");          // lowercase, remove spaces
+	    System.out.print(remove(st));
+	    }
+	    public static String remove(String str){
+	        StringBuilder sb=new StringBuilder();            // for muting                                 Complexity=O(n),O(n)
+	        
+	        boolean[] seen=new boolean[256];               // for visited/seen check
+	        
+	       for(int i=0;i<str.length();i++){
+	           char ch=str.charAt(i);                   //run up a char for check
+	           
+	           if(!seen[ch]){                          // if false, then it is newly occuring
+	               sb.append(ch);                      // adding
+	               seen[ch]=true;                     // modify to true that it is occurred
+	           }
+	       }
+	       return sb.toString();
+	    }
+}
