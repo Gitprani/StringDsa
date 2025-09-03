@@ -1,0 +1,24 @@
+class Solution {
+    public String reverseWords(String s) {
+        String[] words = s.split("\\s+");           // split individual words , ("\\s+)-will handle extra spaces inbetween
+        int left = 0;
+        int right = words.length - 1;
+
+        while (left < right) {
+            String temp = words[left];          // reverse the array
+            words[left] = words[right];
+            words[right] = temp;                                                     Complexity=O(n),O(n)
+            left++;
+            right--;
+        }
+
+        StringBuilder sb = new StringBuilder();     //to mute array(add spaces)
+        for(int i=0;i<words.length;i++){
+            sb.append(words[i]);              // add reversed array elements
+            if(i!=words.length-1){             // till last add a pace in between
+                sb.append(" ");
+            }
+        }
+        return sb.toString().trim();    // return the string with trimmed spaces
+    }
+}
