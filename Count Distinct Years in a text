@@ -1,0 +1,25 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        String text="UN was established on 24-10-1945. India got freedom on 15-08-1947.";
+        System.out.print(count(text));
+        
+    }                                                                                                                     Complexity=O(n),O(1)
+    public static int count(String text){
+        String[] words=text.split("\\s+");            // split string into words with spaces(extra handled)
+        Set<String> years=new HashSet<>();              // to add distinct years(remove duplicate);
+        
+        for(String word : words)
+        if(word.contains("-")){                  // split word with "-"
+            String[] parts=word.split("-");
+            if(parts.length==3){                 // if the parts contain three elements(dd,mm,yyyy.)
+                String year=parts[2].replaceAll("\\D","");         // remove nondigits(yyyy".")
+                if(year.length()==4){                    // after removing ("."), if last part is of length 4
+                    years.add(year);      /add (distinct)
+                }
+            }
+        }
+        return years.size();     //its size
+    }
+}
