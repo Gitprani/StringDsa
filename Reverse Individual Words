@@ -1,0 +1,23 @@
+public class Main
+{
+	public static void main(String[] args) {
+	    String str="Hello Pranesh";
+	    Reverse(str);
+		
+	}
+	public static void Reverse(String st){                                                       Complexity=O(n),O(n)
+	    String[] words=st.split(" ");             //split words and put in a array  
+	    for(int i=0;i<words.length;i++){
+	        words[i]=swap(words[i]);                // modify the words to its reversed form
+	    }
+	    for(String el:words){
+	        System.out.print(el+" ");     //print each word
+	    }
+	    
+	} 
+	public static String swap(String word){
+	    
+	    StringBuilder sb=new StringBuilder(word);     // to mute the substring(word)
+	    return sb.reverse().toString();               //reverse and return as string
+	}
+}
