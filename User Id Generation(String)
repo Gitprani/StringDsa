@@ -1,3 +1,12 @@
+Q. A company wants to generate a User ID using the following rules:
+1. Take two inputs: firstName and lastName.
+2. If the two names have different lengths, choose the shorter name as smaller and the other as longer.
+   If both have equal length, compare alphabetically (ignoring case), the name that comes first alphabetically is smaller, the other is longer.
+3. Take the first letter of the longer name.
+4. Append the smaller name.
+5. Take the N-th digit from the left of the PIN and the N-th digit from the right of the PIN, and append both.
+6. Toggle the case of every alphabet character in the resulting string.
+
 Input:
 Rajiv
 Roy
@@ -5,8 +14,8 @@ Roy
 6
 Ouput:rrOY75  (first of bigger + smaller + pin(n){from left} + pin(n){from right})--->upper to lower and vice versa at end
 
+---------------Solution-------------------------------------------------------------------------------------------------------------
 import java.util.*;
-
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
