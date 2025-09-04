@@ -1,0 +1,77 @@
+import java.util.*;
+
+public class Main {
+
+    // Helper: check if prime
+    private static boolean isPrime(int n) {
+        if (n < 2) return false;
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) return false;
+        }
+        return true;
+    }
+
+    // Helper: reduce to single digit sum
+    private static int digitSum(int n) {
+        while (n >= 10) {                           // till the sum becomes single digit, or n should be a single digit
+            int sum = 0;              // only take a sum if two digit
+            while (n > 0) {
+                int rem=n%10;
+                sum += rem;
+                n /= 10;
+            }
+            n = sum;
+        }
+        return n;
+    }
+
+    public static String[] transformCodes(int[] input1) {
+        String[] result = new String[input1.length];              // create a empty string
+
+        for (int i = 0; i < input1.length; i++) {
+            int n = input1[i];
+            StringBuilder answer = new StringBuilder();     
+
+            // Step A1
+            if (String.valueOf(n).length() == 6)                 // convert int to string and check length()
+                answer.append("C");
+            else
+                answer.append("W");
+
+            // Step A2
+            if (n == 0)
+                answer.append("Z");
+            else if (n == 1)
+                answer.append("O");
+            else if (isPrime(n))                 
+                answer.append("P");
+            else
+                answer.append("N");
+
+            // Step A3
+            int singleDigit = digitSum(n);
+            answer.append(singleDigit);
+
+            // Step A4
+            if (n % 2 == 0)
+                answer.append(n / 2);
+            else
+                answer.append((n - 1) / 2);                 // till now answer(sb) will add values in order of constriant
+
+            result[i] = answer.toString();                  // add values of sb as string into array for each input(inside for loop)
+        }
+
+        return result;
+    }
+
+    // Testing
+    public static void main(String[] args) {
+        int[] input1 = {12};
+        System.out.println(Arrays.toString(transformCodes(input1)));
+        // Expected: ["WN36"]
+
+        int[] input2 = {123456, 1234567};
+        System.out.println(Arrays.toString(transformCodes(input2)));
+        // Expected: ["CN36", "WN1617283"]
+    }
+}
