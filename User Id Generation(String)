@@ -1,0 +1,60 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input
+        String firstName = sc.next();
+        String lastName = sc.next();
+        int pin = sc.nextInt();
+        int N = sc.nextInt();
+
+        String userId = generateUserId(firstName, lastName, pin, N);
+        System.out.println(userId);
+    }
+
+    static String generateUserId(String firstName, String lastName, int Pin, int N) {
+        String smaller, longer;
+
+        // Step 1: Find smaller and longer name
+        if (firstName.length() < lastName.length()) {
+            smaller = firstName;
+            longer = lastName;
+        } else if (firstName.length() > lastName.length()) {
+            smaller = lastName;
+            longer = firstName;
+        } else { // equal length → check alphabetical order
+            if (firstName.compareToIgnoreCase(lastName) < 0) {
+                smaller = firstName;
+                longer = lastName;
+            } else {
+                smaller = lastName;
+                longer = firstName;
+            }
+        }
+
+        // Step 2: Build userId (without toggle)
+        char firstLetter = longer.charAt(0);
+        String pin=String.valueOf(Pin);
+        char leftDigit = pin.charAt(N - 1); // Nth from left
+        char rightDigit = pin.charAt(pin.length() - N); // Nth from right
+
+        String id = "" + firstLetter + smaller + leftDigit + rightDigit;  // create an empty string and concatenate as per rules
+
+        // Step 3: Toggle case
+        StringBuilder sb = new StringBuilder();
+        for (int i=0;i<id.length();i++) {
+            char ch=id.charAt(i);
+            if (Character.isUpperCase(ch)) {
+                sb.append(Character.toLowerCase(ch));
+            } else if (Character.isLowerCase(ch)) {
+                sb.append(Character.toUpperCase(ch));
+            } else {
+                sb.append(ch);  // digits remain same
+            }
+        }
+
+        return sb.toString();
+    }
+}
