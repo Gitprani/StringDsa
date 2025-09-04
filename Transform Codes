@@ -1,5 +1,28 @@
-import java.util.*;
+-----------------Step A1:-------------------
+If the number has 6 digits, append 'C'.
+Otherwise, append 'W'.
+-----------------Step A2:-------------------
+If the number is 0, append 'Z'.
+If the number is 1, append 'O'.
+If the number is a prime number, append 'P'.
+Otherwise, append 'N'.
+-----------------Step A3:-------------------
+Compute the sum of digits repeatedly until a single digit is obtained.
+Append that single digit.
+-----------------Step A4:-------------------
+If the number is even, append n/2.
+If the number is odd, append (n-1)/2.
+Finally, return the array of transformed strings.
 
+Example 1:
+Input: {12}
+Output: ["WN36"]
+Example 2:
+Input: {123456, 1234567}
+Output: ["CN36", "WN1617283"]
+
+-----------Solution---------------------------------------------------------------
+import java.util.*;
 public class Main {
 
     // Helper: check if prime
@@ -63,15 +86,11 @@ public class Main {
 
         return result;
     }
-
-    // Testing
     public static void main(String[] args) {
         int[] input1 = {12};
         System.out.println(Arrays.toString(transformCodes(input1)));
-        // Expected: ["WN36"]
 
         int[] input2 = {123456, 1234567};
         System.out.println(Arrays.toString(transformCodes(input2)));
-        // Expected: ["CN36", "WN1617283"]
     }
 }
