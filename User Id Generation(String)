@@ -1,3 +1,10 @@
+Input:
+Rajiv
+Roy
+560037
+6
+Ouput:rrOY75  (first of bigger + smaller + pin(n){from left} + pin(n){from right})--->upper to lower and vice versa at end
+
 import java.util.*;
 
 public class Main {
