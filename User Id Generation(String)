@@ -17,15 +17,15 @@ public class Main {
     static String generateUserId(String firstName, String lastName, int Pin, int N) {
         String smaller, longer;
 
-        // Step 1: Find smaller and longer name
+                                                             // Step 1: Find smaller and longer name
         if (firstName.length() < lastName.length()) {
             smaller = firstName;
             longer = lastName;
         } else if (firstName.length() > lastName.length()) {
             smaller = lastName;
             longer = firstName;
-        } else { // equal length → check alphabetical order
-            if (firstName.compareToIgnoreCase(lastName) < 0) {
+        } else {                                                 // equal length → check alphabetical order
+            if (firstName.compareToIgnoreCase(lastName) < 0) {    //ignore Case,  return 0(equal strings),-1(smaller),+1(bigger)
                 smaller = firstName;
                 longer = lastName;
             } else {
@@ -37,21 +37,21 @@ public class Main {
         // Step 2: Build userId (without toggle)
         char firstLetter = longer.charAt(0);
         String pin=String.valueOf(Pin);
-        char leftDigit = pin.charAt(N - 1); // Nth from left
-        char rightDigit = pin.charAt(pin.length() - N); // Nth from right
+        char leftDigit = pin.charAt(N - 1);                // Nth from left
+        char rightDigit = pin.charAt(pin.length() - N);    // Nth from right
 
-        String id = "" + firstLetter + smaller + leftDigit + rightDigit;  // create an empty string and concatenate as per rules
+        String id = "" + firstLetter + smaller + leftDigit + rightDigit;      // create an empty string and concatenate as per rules
 
         // Step 3: Toggle case
         StringBuilder sb = new StringBuilder();
         for (int i=0;i<id.length();i++) {
             char ch=id.charAt(i);
-            if (Character.isUpperCase(ch)) {
-                sb.append(Character.toLowerCase(ch));
+            if (Character.isUpperCase(ch)) {                                  // character check methods(Character.is)
+                sb.append(Character.toLowerCase(ch));                         // character convert methods(Character.to)
             } else if (Character.isLowerCase(ch)) {
                 sb.append(Character.toUpperCase(ch));
             } else {
-                sb.append(ch);  // digits remain same
+                sb.append(ch);                                  // digits remain same
             }
         }
 
